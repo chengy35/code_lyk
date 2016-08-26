@@ -1,0 +1,4 @@
+#!/bin/sh
+../debug/Main ./codewords/grFeatures.txt ./codewords/grCenters.txt 96
+../debug/Main ./codewords/ofFeatures.txt ./codewords/ofCenters.txt 108
+../debug/Main ./codewords/mbFeatures.txt ./codewords/mbCenters.txt 192

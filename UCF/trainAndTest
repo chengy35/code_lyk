@@ -1,0 +1,18 @@
+#!/bin/sh
+#../debug/Main ./result/gr_TF.txt ./matrix/gr_TF1.txt ./matrix/gr_TF2.txt ... ./matrix/gr_TF150.txt 
+
+declare -a method
+#method=(gr_TF gr_TFIDF of_TF of_TFIDF mb_TF mb_TFIDF all_TF all_TFIDF weight_TF weight_TFIDF)
+method=(gr_TF of_TF mb_TF all_TF weight_TF)
+# apply leave-one-fold-out for each composition of methods
+for((iMethod=0;iMethod<=4;iMethod=iMethod+1))
+do
+	command="../debug/Main ./result/${method[${iMethod}]}.txt"
+	for((iTest=1;iTest<=150;iTest=iTest+1))
+	do
+		command=${command}" ./matrix/${method[${iMethod}]}${iTest}.txt "
+	done
+	${command}
+done
+
+

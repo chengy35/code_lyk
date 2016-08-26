@@ -1,0 +1,18 @@
+#!/bin/sh
+#../debug/Main ./distance/gr_TF1.txt ./distance/of_TF1.txt ./distance/mb_TF1.txt ./matrix/gr_TF1.txt ./matrix/of_TF1.txt ./matrix/mb_TF1.txt ./matrix/all_TF1.txt ./matrix/weight_TF1.txt
+
+# apply leave-one-fold-out for TF
+for((iTest=1;iTest<=150;iTest=iTest+1))
+do
+	command="../debug/Main ./distance/gr_TF${iTest}.txt ./distance/of_TF${iTest}.txt ./distance/mb_TF${iTest}.txt ./matrix/gr_TF${iTest}.txt ./matrix/of_TF${iTest}.txt ./matrix/mb_TF${iTest}.txt ./matrix/all_TF${iTest}.txt ./matrix/weight_TF${iTest}.txt"
+	${command}
+done
+
+# apply leave-one-fold-out for TFIDF
+<<"COM"
+for((iTest=1;iTest<=150;iTest=iTest+1))
+do
+	command="../debug/Main ./distance/gr_TFIDF${iTest}.txt ./distance/of_TFIDF${iTest}.txt ./distance/mb_TFIDF${iTest}.txt ./matrix/gr_TFIDF${iTest}.txt ./matrix/of_TFIDF${iTest}.txt ./matrix/mb_TFIDF${iTest}.txt ./matrix/all_TFIDF${iTest}.txt ./matrix/weight_TFIDF${iTest}.txt"
+	${command}
+done
+COM

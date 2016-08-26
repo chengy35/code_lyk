@@ -1,0 +1,36 @@
+#!/bin/sh
+#../debug/Main ./codewords/gr1.txt ./distance/gr_TF1.txt ./distance/gr_TFIDF1.txt ./codewords/gr2.txt ./codewords/gr2_flip.txt ... ./codewords/gr150.txt ./codewords/gr150_flip.txt
+
+# apply leave-one-fold-out for KDE-G
+for((iTest=1;iTest<=150;iTest=iTest+1))
+do
+	command="../debug/Main ./codewords/gr${iTest}.txt ./distance/gr_TF${iTest}.txt ./distance/gr_TFIDF${iTest}.txt"
+	for((iTrain=1;iTrain<=150;iTrain=iTrain+1))
+	do
+		[[ ${iTest} -ne ${iTrain} ]] && command="${command} ./codewords/gr${iTrain}.txt ./codewords/gr${iTrain}_flip.txt" || command=${command}					
+	done
+	${command}
+done
+
+# apply leave-one-fold-out for KDE-OF
+for((iTest=1;iTest<=150;iTest=iTest+1))
+do
+	command="../debug/Main ./codewords/of${iTest}.txt ./distance/of_TF${iTest}.txt ./distance/of_TFIDF${iTest}.txt"
+	for((iTrain=1;iTrain<=150;iTrain=iTrain+1))
+	do
+		[[ ${iTest} -ne ${iTrain} ]] && command="${command} ./codewords/of${iTrain}.txt ./codewords/of${iTrain}_flip.txt" || command=${command}					
+	done
+	${command}
+done
+
+# apply leave-one-fold-out for KDE-MB
+for((iTest=1;iTest<=150;iTest=iTest+1))
+do
+	command="../debug/Main ./codewords/mb${iTest}.txt ./distance/mb_TF${iTest}.txt ./distance/mb_TFIDF${iTest}.txt"
+	for((iTrain=1;iTrain<=150;iTrain=iTrain+1))
+	do
+		[[ ${iTest} -ne ${iTrain} ]] && command="${command} ./codewords/mb${iTrain}.txt ./codewords/mb${iTrain}_flip.txt" || command=${command}					
+	done
+	${command}
+done
+
